@@ -17,12 +17,14 @@ import {
   Tab,
   TabList,
   Tabs,
+  Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { BsBag } from "react-icons/bs";
 import { Login } from "../Components/Login";
+import { AuthContext } from "../Context/Auth/AuthContext";
 
 const fashionNavItems = [
   {
@@ -136,10 +138,17 @@ export const Navbar = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const { handleSubmit, isAuth, handleLogout, token } = useContext(AuthContext);
+
   return (
-    <Box margin="1rem">
-      <HStack my={2} justify={"flex-end"}>
-        <Button onClick={onOpen}>Sign In / Sign Up</Button>
+    <Box margin="1rem" px={4}>
+      <HStack my={2} justify={"space-between"}>
+        {isAuth ? <Text>Token: {token}</Text> : null}
+        {isAuth ? (
+          <Button onClick={handleLogout}>Logout</Button>
+        ) : (
+          <Button onClick={onOpen}>Sign In / Sign Up</Button>
+        )}
       </HStack>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -151,10 +160,18 @@ export const Navbar = () => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+            <Button variant="ghost" mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant="ghost">Submit</Button>
+            <Button
+              colorScheme="blue"
+              onClick={() => {
+                handleSubmit();
+                onClose();
+              }}
+            >
+              Submit
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
@@ -180,7 +197,12 @@ export const Navbar = () => {
         </HStack>
       </HStack>
       <Divider />
-      <HStack h="50px" gap={2} alignItems="center" justifyContent="center">
+      <HStack
+        h="50px"
+        gap={2}
+        alignItems="center"
+        justifyContent={"space-evenly"}
+      >
         {navState === "fashion" ? (
           <FashionMapNavbarItems />
         ) : (
