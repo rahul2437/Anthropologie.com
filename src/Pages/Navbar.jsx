@@ -14,6 +14,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Stack,
   Tab,
   TabList,
   Tabs,
@@ -22,9 +23,9 @@ import {
 } from "@chakra-ui/react";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { BsBag } from "react-icons/bs";
 import { Login } from "../Components/Login";
 import { AuthContext } from "../Context/Auth/AuthContext";
+import { BsBagFill } from "react-icons/bs";
 
 const fashionNavItems = [
   {
@@ -142,7 +143,7 @@ export const Navbar = () => {
 
   return (
     <Box margin="1rem" px={4}>
-      <HStack my={2} justify={"space-between"}>
+      <HStack my={2} justify={isAuth ? "space-between" : "flex-end"}>
         {isAuth ? <Text>Token: {token}</Text> : null}
         {isAuth ? (
           <Button onClick={handleLogout}>Logout</Button>
@@ -193,11 +194,12 @@ export const Navbar = () => {
             <Input width={80} size="md" placeholder="Search Anthropologie" />
             <InputRightAddon children={<Search2Icon />} />
           </InputGroup>
-          <Icon boxSize={6} as={BsBag} />
+          <Icon boxSize={5} as={BsBagFill} />
         </HStack>
       </HStack>
       <Divider />
-      <HStack
+      <Stack
+        flexDirection={"row"}
         h="50px"
         gap={2}
         alignItems="center"
@@ -208,7 +210,7 @@ export const Navbar = () => {
         ) : (
           <DecorMapNavbarItems />
         )}
-      </HStack>
+      </Stack>
       <Divider />
     </Box>
   );
