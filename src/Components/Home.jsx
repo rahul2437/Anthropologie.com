@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Center,
   Container,
   Grid,
@@ -49,6 +50,26 @@ const bigCards = [
   },
 ];
 
+const smallCards = [
+  {
+    image:
+      "https://images.ctfassets.net/5de70he6op10/4NK6QXYqXQVTDhpZ9UMWNK/d911d177da539390c2d1b6daa495ac8e/RR_Jewelry.jpg?w=856&q=80&fm=webp",
+    title: "shop jewelry",
+    path: "/dresses",
+  },
+  {
+    image:
+      "https://images.ctfassets.net/5de70he6op10/6HzwDJ0UOm79B8yDxaLdZl/284875498314791ff31a37b44d8dfc84/RR_Tops.jpg?w=856&q=80&fm=webp",
+    title: "shop tops",
+    path: "/dresses",
+  },
+  {
+    image:
+      "https://images.ctfassets.net/5de70he6op10/2efDE4cBwaR3ZQyPzztR7J/597dd3c7dd19dca2852c0a43198f5d6d/RR_Candles.jpg?w=856&q=80&fm=webp",
+    title: "shop candles",
+    path: "/dresses",
+  },
+];
 export const Home = () => {
   return (
     // <Container>
@@ -63,6 +84,41 @@ export const Home = () => {
         gap={4}
       >
         {bigCards.map((card) => (
+          <Link to={card.path}>
+            <Text
+              fontSize={"2xl"}
+              textDecoration={"underline"}
+              left={2}
+              position={"relative"}
+              top={"90%"}
+            >
+              {card.title}
+            </Text>
+            <Image src={card.image} />
+          </Link>
+        ))}
+      </Grid>
+      <Box>
+        <Image
+          src="https://images.ctfassets.net/5de70he6op10/gvtQ7vdLL1NIzHnP61goT/cf11fdce21cdd03939556f8b620d1fc0/LS_M3_Home.jpg?w=2641&q=80&fm=webp"
+          my={5}
+        />
+        <Center gap={3} position={"relative"} top={"-5rem"}>
+          <Button>explore the edit</Button>
+          <Button>take the full house tour</Button>
+        </Center>
+      </Box>
+      <Grid
+        gridTemplateColumns={{
+          base: "repeat(3,1fr)",
+          lg: "repeat(3,1fr)",
+          md: "repeat(2,1fr)",
+          sm: "repeat(1,1fr)",
+        }}
+        gap={4}
+        mt={"-5rem"}
+      >
+        {smallCards.map((card) => (
           <Link to={card.path}>
             <Text
               fontSize={"2xl"}
