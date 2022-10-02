@@ -1,6 +1,5 @@
 import { Grid, GridItem, Spinner } from "@chakra-ui/react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
 import { AppContext } from "../../Context/App/AppContext";
 import { ProductCard } from "./ProductCard";
 
