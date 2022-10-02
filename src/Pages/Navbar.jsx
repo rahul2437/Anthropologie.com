@@ -27,7 +27,7 @@ import { Login } from "../Components/Login";
 import { AuthContext } from "../Context/Auth/AuthContext";
 import { BsBagFill } from "react-icons/bs";
 
-const fashionNavItems = [
+export const fashionNavItems = [
   {
     title: "New!",
     path: "/new",
@@ -74,7 +74,7 @@ const fashionNavItems = [
   },
 ];
 
-const homeNavItems = [
+export const homeNavItems = [
   {
     title: "Holiday Décor & More",
     path: "/holidaydecor",
@@ -194,7 +194,9 @@ export const Navbar = () => {
             <Input width={80} size="md" placeholder="Search Anthropologie" />
             <InputRightAddon children={<Search2Icon />} />
           </InputGroup>
-          <Icon boxSize={5} as={BsBagFill} />
+          <Link to="/cart">
+            <Icon boxSize={5} as={BsBagFill} />
+          </Link>
         </HStack>
       </HStack>
       <Divider />
