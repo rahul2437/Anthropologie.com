@@ -61,6 +61,7 @@ export const AppContextProvider = ({ children }) => {
         removeFromCart,
         checkInCart,
         TotalInCart,
+        setCart,
       }}
     >
       {children}

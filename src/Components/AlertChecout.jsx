@@ -10,12 +10,14 @@ import {
 } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../Context/App/AppContext";
 import { AuthContext } from "../Context/Auth/AuthContext";
 
 export const AlertChecout = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
   const { isAuth, handleLogout } = useContext(AuthContext);
+  const { setCart } = useContext(AppContext);
 
   const navigate = useNavigate();
 
@@ -23,6 +25,7 @@ export const AlertChecout = () => {
     onClose();
     handleLogout();
     navigate("/");
+    setCart([]);
   };
 
   return (
