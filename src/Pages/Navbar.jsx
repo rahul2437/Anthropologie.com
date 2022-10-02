@@ -126,12 +126,18 @@ export const homeNavItems = [
 ];
 
 const FashionMapNavbarItems = () => {
-  return fashionNavItems.map((item) => (
-    <Link to={item.path}>{item.title}</Link>
+  return fashionNavItems.map((item, i) => (
+    <Link key={i} to={item.path}>
+      {item.title}
+    </Link>
   ));
 };
 const DecorMapNavbarItems = () => {
-  return homeNavItems.map((item) => <Link to={item.path}>{item.title}</Link>);
+  return homeNavItems.map((item, i) => (
+    <Link key={i} to={item.path}>
+      {item.title}
+    </Link>
+  ));
 };
 
 export const Navbar = () => {

@@ -18,6 +18,21 @@ export const AppContextProvider = ({ children }) => {
     setCart([...cart, data]);
   };
 
+  const removeFromCart = (id) => {
+    setCart(cart.filter((item) => item.id !== id));
+  };
+
+  const checkInCart = (id) => {
+    return cart.forEach((item) => item.id === id);
+  };
+  const TotalInCart = () => {
+    let total = 0;
+    cart.forEach((item) => {
+      total += item.price;
+    });
+    return total;
+  };
+
   useEffect(() => {
     setLoading(true);
     axios({
@@ -43,6 +58,9 @@ export const AppContextProvider = ({ children }) => {
         setLimit,
         addToCart,
         cart,
+        removeFromCart,
+        checkInCart,
+        TotalInCart,
       }}
     >
       {children}

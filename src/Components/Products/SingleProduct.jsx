@@ -14,14 +14,13 @@ import { AppContext } from "../../Context/App/AppContext";
 
 const SingleProduct = () => {
   const { id } = useParams();
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
   const [imgIdx, setImgIdx] = useState(0);
 
   const { addToCart } = useContext(AppContext);
 
-  console.log(data);
-
   useEffect(() => {
+    console.log("usedEeffet");
     axios
       .get(`https://api.escuelajs.co/api/v1/products/${id}`)
       .then((res) => {
@@ -30,7 +29,7 @@ const SingleProduct = () => {
       .catch((err) => console.dir(err));
   }, []);
 
-  return (
+  return data ? (
     <div
       style={{
         margin: "1rem",
@@ -47,7 +46,7 @@ const SingleProduct = () => {
       >
         <div>
           <Grid gap={"2rem"}>
-            {data.images.map((image, i) => (
+            {data?.images.map((image, i) => (
               <GridItem onClick={() => setImgIdx(i)} key={i} w={"8rem"}>
                 <Image src={image} />
               </GridItem>
@@ -75,6 +74,8 @@ const SingleProduct = () => {
         </Button>
       </div>
     </div>
+  ) : (
+    <h1>"No product selected"</h1>
   );
 };
 

@@ -15,17 +15,17 @@ export const AllRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/cart" element={<Cart />} />
-      {fashionNavItems.map((item) => (
-        <Route path={item.path} element={<Products />} />
+      {fashionNavItems.map((item, i) => (
+        <Route key={i} path={item.path} element={<Products />} />
       ))}
-      {fashionNavItems.map((item) => (
-        <Route path={item.path + "/:id"} element={<SingleProduct />} />
+      {fashionNavItems.map((item, i) => (
+        <Route key={i} path={item.path + "/:id"} element={<SingleProduct />} />
       ))}
-      {homeNavItems.map((item) => (
-        <Route path={item.path} element={<Products />} />
+      {homeNavItems.map((item, i) => (
+        <Route key={i} path={item.path} element={<Products />} />
       ))}
-      {homeNavItems.map((item) => (
-        <Route path={item.path + "/:id"} element={<SingleProduct />} />
+      {homeNavItems.map((item, i) => (
+        <Route key={i} path={item.path + "/:id"} element={<SingleProduct />} />
       ))}
     </Routes>
   );

@@ -29,17 +29,14 @@ const ProductListing = () => {
           gap={"10px"}
           templateColumns={"repeat(2,1fr)"}
         >
-          {data?.map((product) => (
-            <GridItem>
-              <Link to={`/dresses/${product.id}`}>
-                <ProductCard
-                  key={product.id}
-                  name={product.title}
-                  price={product.price}
-                  images={product.images}
-                />
-              </Link>
-            </GridItem>
+          {data?.map((product, i) => (
+            <ProductCard
+              key={i}
+              id={product.id}
+              name={product.title}
+              price={product.price}
+              images={product.images}
+            />
           ))}
         </Grid>
       ) : (
